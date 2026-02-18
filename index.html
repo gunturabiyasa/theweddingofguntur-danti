@@ -3,38 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>The Wedding Of Guntur & Danti</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin:0;
-    font-family:'Poppins', sans-serif;
-    background:#faf7f5;
-    color:#4b2e2e;
-    text-align:center;
+:root{
+  --burgundy:#6e1f2b;
+  --cream:#f6f1ee;
+  --text:#3e2a2a;
 }
 
-.section {
-    padding:60px 20px;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-.cover {
-    background:#6e1f2b;
-    color:#fff;
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  overflow-x:hidden;
 }
 
-.cover h1 {
-    font-family:'Playfair Display', serif;
-    font-size:40px;
-    margin:10px 0;
+h1,h2{
+  font-family:'Playfair Display',serif;
 }
+
+section{
+  padding:100px 20px;
+  text-align:center;
+}
+
+.container{
+  max-width:800px;
+  margin:auto;
+}
+
+.fade{
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.cover{
+  height:100vh;
+  background:linear-gradient(180deg,#6e1f2b,#4d141c);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  position:fixed;
+  width:100%;
+  z-index:999;
+}
+
+.cover h1{
+  font-size:45px;
+  margin:15px 0;
+}
+
+.btn{
+  margin-top:30px;
+  padding:12px 35px;
+  background:var(--cream);
+  color:var(--burgundy);
+  border:none;
+  cursor:pointer;
+  font-weight:500;
+}
+
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:var(--burgundy);
+  color:white;
+  border:none;
+  padding:12px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+.card{
+  background:white;
+  padding:40px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+footer{
+  background:var(--burgundy);
+  color:white;
+  padding:40px 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- COVER OPENING -->
+<div class="cover" id="cover">
+  <p>The Wedding Of</p>
+  <h1>Guntur & Danti</h1>
+  <p id="guestName"></p>
+  <button class="btn" onclick="openInvitation()">Buka Undangan</button>
+</div>
+
+<audio id="music" loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+<!-- MAIN CONTENT -->
+<div id="content" style="display:none;">
+
+<section class="fade">
+  <div class="container">
+    <h2>QS. Ar-Rum: 21</h2>
+    <p>
+    Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup...
+    </p>
+  </div>
+</section>
+
+<section class="fade">
+  <div class="container">
+    <h2>Guntur Abiyasa Sutrisno</h2>
+    <p>Putra dari Bapak Wahyono & Ibu Nur Faizah</p>
+    <br><br>
+    <h2>Danti Candradewi Putri Hartono</h2>
+    <p>Putri dari Bapak Sugi Hartono & Ibu Sriah</p>
+  </div>
+</section>
+
+<section class="fade">
+  <div class="container card">
+    <h2>Kamis, 26 Maret 2026</h2>
+    <p>08.00 WIB – Akad Nikah</p>
+    <p>10.00 WIB – Resepsi</p>
+  </div>
+</section>
+
+<section class="fade">
+  <div class="container">
+    <h2>Lokasi</h2>
+    <p>Ds. Pekiringan Alit, Kajen, Pekalongan</p>
+  </div>
+</section>
+
+<footer>
+  Terima kasih atas doa & restunya.
+</footer>
+
+</div>
+
+<script>
+// OPEN INVITATION
+function openInvitation(){
+  document.getElementById("cover").style.display="none";
+  document.getElementById("content").style.display="block";
+  document.getElementById("music").play();
+}
+
+// MUSIC TOGGLE
+function toggleMusic(){
+  var music = document.getElementById("music");
+  if(music.paused){
+    music.play();
+  } else {
+    music.pause();
+  }
+}
+
+// FADE ANIMATION
+const faders = document.querySelectorAll('.fade');
+window.addEventListener('scroll', () => {
+  faders.forEach(fade => {
+    const rect = fade.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+      fade.classList.add('show');
+    }
+  });
+});
+
+// GET NAME FROM URL
+const urlParams = new URLSearchParams(window.location.search);
+const guest = urlParams.get('to');
+if(guest){
+  document.getElementById("guestName").innerText = "Kepada Yth. " + guest;
+}
+</script>
+
+</body>
+</html>}
 
 .button {
     margin-top:20px;
