@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Wedding Of Guntur & Danti</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:#faf7f5;
+    color:#4b2e2e;
+    text-align:center;
+}
+
+.section {
+    padding:60px 20px;
+}
+
+.cover {
+    background:#6e1f2b;
+    color:#fff;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.cover h1 {
+    font-family:'Playfair Display', serif;
+    font-size:40px;
+    margin:10px 0;
+}
+
+.button {
+    margin-top:20px;
+    padding:12px 30px;
+    background:#f5e8e4;
+    color:#6e1f2b;
+    border:none;
+    cursor:pointer;
+    font-weight:500;
+}
+
+.ayat {
+    background:#f5e8e4;
+}
+
+h2 {
+    font-family:'Playfair Display', serif;
+    margin-bottom:20px;
+}
+
+.card {
+    background:#f5e8e4;
+    margin:20px auto;
+    padding:25px;
+    max-width:500px;
+    border-radius:8px;
+}
+
+.countdown {
+    font-size:28px;
+    font-weight:500;
+}
+
+a.map-btn {
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 25px;
+    background:#6e1f2b;
+    color:#fff;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="section cover">
+    <p>The Wedding Of</p>
+    <h1>Guntur & Danti</h1>
+    <p>26 Maret 2026</p>
+    <button class="button" onclick="document.getElementById('main').scrollIntoView()">Buka Undangan</button>
+</div>
+
+<div id="main">
+
+<div class="section ayat">
+    <h2>QS. Ar-Rum: 21</h2>
+    <p>Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri supaya kamu merasa tenteram kepadanya...</p>
+</div>
+
+<div class="section">
+    <h2>Guntur Abiyasa Sutrisno</h2>
+    <p>Putra dari Bapak Wahyono & Ibu Nur Faizah</p>
+    <br>
+    <h2>Danti Candradewi Putri Hartono</h2>
+    <p>Putri dari Bapak Sugi Hartono & Ibu Sriah</p>
+</div>
+
+<div class="section">
+    <div class="card">
+        <h2>Detail Acara</h2>
+        <p>Kamis, 26 Maret 2026</p>
+        <p>07.00 WIB – Persiapan & Kedatangan Tamu</p>
+        <p>08.00 WIB – Akad Nikah</p>
+        <p>10.00 WIB – Resepsi & Acara Puncak</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Countdown</h2>
+    <div class="countdown" id="countdown"></div>
+</div>
+
+<div class="section">
+    <h2>Lokasi</h2>
+    <p>Ds. Pekiringan Alit RT 06 / RW 04 No. 5<br>
+    Kec. Kajen, Kab. Pekalongan</p>
+    <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=XH66+GM+Pekiringan+Alit" target="_blank">Lihat Lokasi</a>
+</div>
+
+</div>
+
+<script>
+var countDownDate = new Date("March 26, 2026 08:00:00").getTime();
+
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML = 
+  days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik ";
+
+}, 1000);
+</script>
+
+</body>
+</html>
