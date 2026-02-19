@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wedding Of Guntur & Danti</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:linear-gradient(#f9f6f2,#f3eee8);
+  overflow:hidden;
+  scroll-behavior:smooth;
+  color:#5a4a42;
+}
+
+/* COVER */
+#cover{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:linear-gradient(rgba(107,30,45,.8),rgba(107,30,45,.8)),
+             url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1400&q=80');
+  background-size:cover;
+  background-position:center;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  z-index:9999;
+  transition:1.5s ease;
+}
+
+#cover h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:52px;
+  letter-spacing:2px;
+}
+
+#cover button{
+  margin-top:30px;
+  padding:12px 35px;
+  border:none;
+  border-radius:30px;
+  background:#d6b98c;
+  color:white;
+  font-size:14px;
+  letter-spacing:1px;
+  cursor:pointer;
+}
+
+#cover.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+/* SECTION */
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:80px 20px;
+  opacity:0;
+  transform:translateY(80px);
+  transition:1.2s ease;
+}
+
+section.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* CARD STYLE */
+.card{
+  background:white;
+  padding:60px 40px;
+  max-width:700px;
+  width:100%;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.05);
+  text-align:center;
+  position:relative;
+}
+
+.divider{
+  width:80px;
+  height:2px;
+  background:#d6b98c;
+  margin:25px auto;
+}
+
+/* TYPO */
+.title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  letter-spacing:3px;
+  font-size:12px;
+  text-transform:uppercase;
+  color:#b8a48c;
+}
+
+.text{
+  line-height:1.8;
+  margin-top:20px;
+}
+
+/* COUNTDOWN */
+.countdown{
+  margin-top:20px;
+  font-size:18px;
+  letter-spacing:2px;
+}
+
+/* CLOSING GLOW */
+.glow{
+  font-family:'Cormorant Garamond',serif;
+  font-size:44px;
+  animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 8px #e6d3b3;}
+  to{text-shadow:0 0 20px #d6b98c;}
+}
+
+/* MUSIC */
+.music-btn{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#d6b98c;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+  z-index:999;
+}
+
+.music-btn.playing{
+  animation:spin 6s linear infinite;
+}
+
+@keyframes spin{
+  100%{transform:rotate(360deg);}
+}
+
+/* FLOWER */
+.flower{
+  position:fixed;
+  top:-20px;
+  width:18px;
+  height:18px;
+  background:url('https://i.ibb.co/6bQ5JzX/petal.png');
+  background-size:cover;
+  animation:fall linear infinite;
+  opacity:0.6;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
+}
+
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div id="cover">
+  <h1>Guntur & Danti</h1>
+  <p id="guestDisplay"></p>
+  <button onclick="openInvitation()">Buka Undangan</button>
+</div>
+
+<!-- SAVE -->
+<section>
+  <div class="card">
+    <div class="subtitle">Save The Date</div>
+    <div class="divider"></div>
+    <div class="text">
+      Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga,
+      apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+    </div>
+    <div class="countdown" id="countdown"></div>
+  </div>
+</section>
+
+<!-- AYAT -->
+<section>
+  <div class="card">
+    <div class="text" style="font-family:'Cormorant Garamond',serif;font-size:22px;">
+      وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ...
+    </div>
+    <div class="divider"></div>
+    <div class="subtitle">Ar-Rum · Ayat 21</div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section>
+  <div class="card">
+    <div class="glow">Guntur & Danti</div>
+    <div class="divider"></div>
+    <div class="text">
+      Merupakan Suatu Kebahagiaan dan Kehormatan bagi Kami,
+      apabila Bapak/Ibu/Saudara/i Berkenan Hadir di Acara Kami.
+    </div>
+  </div>
+</section>
+
+<audio id="music" loop>
+  <source src="music/perfect-instrumental.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-btn" id="musicBtn" onclick="toggleMusic()">♫</div>
+
+<script>
+
+/* URL NAME */
+const params=new URLSearchParams(window.location.search);
+const guest=params.get("to");
+if(guest){
+  document.getElementById("guestDisplay").innerText="Kepada Yth. "+guest;
+}
+
+/* OPEN */
+function openInvitation(){
+  document.getElementById("cover").classList.add("hide");
+  document.body.style.overflow="auto";
+  music.play();
+  musicBtn.classList.add("playing");
+}
+
+/* SCROLL */
+const sections=document.querySelectorAll("section");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("active");
+    }
+  });
+},{threshold:0.3});
+sections.forEach(section=>observer.observe(section));
+
+/* COUNTDOWN */
+const targetDate=new Date("2026-12-12 08:00:00").getTime();
+const countdown=document.getElementById("countdown");
+
+setInterval(()=>{
+  const now=new Date().getTime();
+  const distance=targetDate-now;
+  const d=Math.floor(distance/(1000*60*60*24));
+  const h=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+  const m=Math.floor((distance%(1000*60*60))/(1000*60));
+  const s=Math.floor((distance%(1000*60))/1000);
+  countdown.innerHTML=d+" Hari "+h+" Jam "+m+" Menit "+s+" Detik";
+},1000);
+
+/* MUSIC */
+const music=document.getElementById("music");
+const musicBtn=document.getElementById("musicBtn");
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+    musicBtn.classList.add("playing");
+  }else{
+    music.pause();
+    musicBtn.classList.remove("playing");
+  }
+}
+
+/* FLOWER */
+function createFlower(){
+  const flower=document.createElement("div");
+  flower.classList.add("flower");
+  flower.style.left=Math.random()*100+"vw";
+  flower.style.animationDuration=(Math.random()*6+6)+"s";
+  document.body.appendChild(flower);
+  setTimeout(()=>flower.remove(),12000);
+}
+setInterval(createFlower,1000);
+
+</script>
+
+</body>
+</html>
